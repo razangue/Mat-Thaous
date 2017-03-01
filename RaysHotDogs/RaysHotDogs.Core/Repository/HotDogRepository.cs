@@ -13,7 +13,7 @@ namespace RaysHotDogs.Core.Repository
         {
             new HotDogGroup()
             {
-                HotDogGroupId=1, Title= "Meat Lovers",ImagePath="", HotDogs =new List<HotDog>()
+                HotDogGroupId=1, Title= "Meat Lovers",ImagePath="hotDogGroup1", HotDogs =new List<HotDog>()
                 {
                     new HotDog()
                     {
@@ -21,7 +21,7 @@ namespace RaysHotDogs.Core.Repository
                         Name ="Regular Hot Dog",
                         ShortDescription="The best there in on this planet",
                         Description ="Machego smelly cheese danish fortina. Hard cheese",
-                        ImagePath="hotdog1",
+                        ImagePath="hotDog1",
                         Available=true,
                         PrepTime=10,
                         Ingredients = new List<string>(){"Regular bun", "Sausage","Cheese","Ketchup"},
@@ -34,7 +34,7 @@ namespace RaysHotDogs.Core.Repository
                         Name ="Haute Dog",
                         ShortDescription="The classic one",
                         Description ="Bacon ipsum dolor amet",
-                        ImagePath="hotdog2",
+                        ImagePath="hotDog2",
                         Available=true,
                         PrepTime=15,
                         Ingredients = new List<string>(){"Regular bun", "Gourmet Sausage","Cheese","Ketchup"},
@@ -47,7 +47,7 @@ namespace RaysHotDogs.Core.Repository
                         Name ="Extra Long",
                         ShortDescription="For when a regular one isn't enough",
                         Description ="Capicola short loin shoulder strip streak",
-                        ImagePath="hotdog3",
+                        ImagePath="hotDog3",
                         Available=true,
                         PrepTime=10,
                         Ingredients = new List<string>(){"Extra long bun", "Extra long Sausage","Cheese","Ketchup"},
@@ -58,7 +58,7 @@ namespace RaysHotDogs.Core.Repository
             },
             new HotDogGroup()
             {
-                HotDogGroupId=2, Title= "Veggie Lovers",ImagePath="", HotDogs =new List<HotDog>()
+                HotDogGroupId=2, Title= "Veggie Lovers",ImagePath="hotDogGroup2", HotDogs =new List<HotDog>()
                 {
                     new HotDog()
                     {
@@ -66,7 +66,7 @@ namespace RaysHotDogs.Core.Repository
                         Name ="Veggie Hot Dog",
                         ShortDescription="American for non-meat-lovers",
                         Description ="Veggie es bonus vobis, proinde vos postulo",
-                        ImagePath="hotdog4",
+                        ImagePath="hotDog4",
                         Available=true,
                         PrepTime=10,
                         Ingredients = new List<string>(){"Bun", "Vegetarian sausage","Cheese","Ketchup"},
@@ -79,7 +79,7 @@ namespace RaysHotDogs.Core.Repository
                         Name ="Haute Dog Veggie",
                         ShortDescription="Classic and veggie",
                         Description ="Green hot dog",
-                        ImagePath="hotdog5",
+                        ImagePath="hotDog5",
                         Available=true,
                         PrepTime=15,
                         Ingredients = new List<string>(){"Backed bun", "Gourmet vegetarian Sausage","Cheese","Ketchup"},
@@ -92,7 +92,7 @@ namespace RaysHotDogs.Core.Repository
                         Name ="Extra Long Veggie",
                         ShortDescription="For when a regular one isn't enough",
                         Description ="The best veggie hot dog",
-                        ImagePath="hotdog6",
+                        ImagePath="hotDog6",
                         Available=true,
                         PrepTime=10,
                         Ingredients = new List<string>(){"Extra long bun", "Extra long Sausage","Cheese","Ketchup"},

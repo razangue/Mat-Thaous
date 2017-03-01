@@ -14,7 +14,7 @@ using System.Text;
 
 namespace RaysHotDogs
 {
-    [Activity(Label = "Hot dog detail", MainLauncher = true)]
+    [Activity(Label = "Hot dog detail", MainLauncher = false)]
     public class HotDogDetailActivity : Activity
     {
         private ImageView hotDogImageView;
@@ -27,14 +27,16 @@ namespace RaysHotDogs
         private Button orderButton;
 
         private HotDog selectedHotDog;
-        private HotDogDataService dataService;
+        private HotDogDataService hotDogDataService;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.HotDogDetailView);
-            dataService = new HotDogDataService();
-            selectedHotDog = dataService.GetHotDogById(1);
+            hotDogDataService = new HotDogDataService();
+
+            var selectedHotDogId = Intent.Extras.GetInt("selectedHotDogId");
+            selectedHotDog = hotDogDataService.GetHotDogById(selectedHotDogId);
             FindViews();
             BindData();
             HandleEvents();
@@ -59,8 +61,7 @@ namespace RaysHotDogs
             descriptionTextView.Text = selectedHotDog.Description;
             priceTextView.Text = "Price: " + selectedHotDog.Price;
 
-            //var imageBitmap = ImageHelper.GetImageBitmapFromUrl(null);
-            hotDogImageView.SetImageBitmap(null);
+            hotDogImageView.SetImageResource(ImageHelper.GetImageFromName(selectedHotDog.ImagePath));
          }
         private void HandleEvents()
         {
@@ -73,10 +74,12 @@ namespace RaysHotDogs
         }
         private void OrderButton_Click(Object sender, EventArgs e) {
             var amount = Int32.Parse(amountEditText.Text);
-            var dialog = new AlertDialog.Builder(this);
-            dialog.SetTitle("Confirmation");
-            dialog.SetMessage("Your hot dog has been added to your cart!");
-            dialog.Show();
+
+            var intent = new Intent();
+            intent.PutExtra("selectedHotDogId", selectedHotDog.HotDogId);
+            intent.PutExtra("amount", amount);
+            SetResult(Result.Ok, intent);
+            this.Finish();
         }
     }
 }

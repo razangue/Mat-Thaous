@@ -10,11 +10,14 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using RaysHotDogs.Core.Model;
+using RaysHotDogs.Utility;
+using Android.Graphics;
 
 namespace RaysHotDogs.Adapters
 {
-    public class HotDogListAdapter : BaseAdapter<HotDog> { 
-    
+    public class HotDogListAdapter : BaseAdapter<HotDog>
+    {
+
         List<HotDog> items;
         Activity context;
         public HotDogListAdapter(Activity context, List<HotDog> items) : base()
@@ -35,7 +38,7 @@ namespace RaysHotDogs.Adapters
                 return items[position];
             }
         }
-        public override int  Count
+        public override int Count
         {
             get
             {
@@ -45,10 +48,15 @@ namespace RaysHotDogs.Adapters
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             var item = items[position];
-            if (convertView == null) {
-                convertView = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem1, null);
+            int hotDogImage = ImageHelper.GetImageFromName(item.ImagePath);
+            if (convertView == null)
+            {
+                convertView = context.LayoutInflater.Inflate(Resource.Layout.HotDogRowView, null);
             }
-            convertView.FindViewById<TextView>(Android.Resource.Id.Text1).Text = item.Name;
+            convertView.FindViewById<TextView>(Resource.Id.hotDogNameTextView).Text = item.Name;
+            convertView.FindViewById<TextView>(Resource.Id.shortDescriptionTextView).Text = item.ShortDescription;
+            convertView.FindViewById<TextView>(Resource.Id.priceTextView).Text = "$ "+ item.Price;
+            convertView.FindViewById<ImageView>(Resource.Id.hotDogImageView).SetImageResource(hotDogImage);
             return convertView;
         }
     }
