@@ -39,7 +39,7 @@ namespace RaysHotDogs.Utility
                 case "hotDogGroup2":
                     return Resource.Drawable.hotDogGroup2;
                 default:
-                    return Resource.Drawable.hotDogGroup3;
+                    return Resource.Drawable.FavoritesIcon;
             }
         }
     }

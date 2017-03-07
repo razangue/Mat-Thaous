@@ -10,25 +10,36 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using RaysHotDogs.Core.Service;
+using RaysHotDogs.Core.Model;
 
 namespace RaysHotDogs.Fragments
 {
     public class BaseFragment : Fragment
     {
         protected ListView listView;
-        public override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
+        protected HotDogDataService hotDogDataService;
+        protected List<HotDog> hotDogs;
 
-            // Create your fragment here
+        public BaseFragment()
+        {
+            hotDogDataService = new HotDogDataService();
         }
-
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        protected void HandleEvents()
         {
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
-            return base.OnCreateView(inflater, container, savedInstanceState);
+            listView.ItemClick += ListView_ItemClick;
+        }
+        protected void FindViews()
+        {
+            listView = this.View.FindViewById<ListView>(Resource.Id.hotDogListView);
+        }
+        private void ListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+        {
+            var hotDog = hotDogs[e.Position];
+            var intent = new Intent();
+            intent.SetClass(this.Activity, typeof(HotDogDetailActivity));
+            intent.PutExtra("selectedHotDogId", hotDog.HotDogId);
+            StartActivityForResult(intent, 100);
         }
     }
 }
